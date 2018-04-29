@@ -20,6 +20,30 @@ export function setupRouting(){
         movieSearch.buildSearchPage();
     });
 
+    route('/topVoted20', () => {
+        console.log('Route to 20 best voted overall');
+        clearContent();
+        movieSearch.buildTopVotedPage();
+    });
+
+    route('/topV20Category', () => {
+        console.log('Route to 20 best voted in category');
+        clearContent();
+        movieSearch.buildTopVotedCatPage();
+    });
+
+    route('/soonReleased', () => {
+        console.log('Route to soon released');
+        clearContent();
+        movieSearch.buildCommingSoonPage();
+    });
+
+    route('/popular20', () => {
+        console.log('Route to most popular');
+        clearContent();
+        movieSearch.buildMostPopularPage();
+    });
+
     // Start watching for route changes
     startRouting();
 

@@ -17,6 +17,19 @@ $(document).ready(() => {
     $('#nav-search').click(() => {
         router.doRouting('search');
     });
+    $('#nav-topRated').click(() => {
+        router.doRouting('topVoted20');
+    });
+    $('#nav-topRatedByGenry').click(() => {
+        router.doRouting('topV20Category');
+    });
+    $('#nav-commingSoon').click(() => {
+        router.doRouting('soonReleased');
+    });
+    $('#nav-popular20').click(() => {
+        router.doRouting('popular20');
+    });
+
 
 });
 
