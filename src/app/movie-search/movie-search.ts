@@ -1,5 +1,6 @@
-import {apiKey} from '../constants';
+import {apiKey, dbUrl} from '../constants';
 import {showDetails} from '../movie-details/movie-details';
+import {addToFavourite} from '../movie-favourite/move-favourite';
 import {DefaultMovieModel} from '../movie-model';
 
 // Globals
@@ -54,6 +55,7 @@ export function buildTopVotedPage() {
     $.get(url, (data) => {
         const movies = data.results;
         for (const movie of movies) {
+            //console.log('movie tv ', movie.id)
             model.addMovie(movie);
         }
     });
@@ -67,9 +69,9 @@ export function buildTopVotedCatPage() {
     $('<div>').appendTo('#content').addClass('row').attr('id', 'mainGridBodyGenre');
     $('<div>').appendTo('#mainGridBodyGenre').addClass( 'col-sm-5' ).attr('id','leftSide');
     $('<div>').appendTo('#leftSide').addClass('row').attr('id','nestedSequence');
-    $( '<div>' ).appendTo( '#nestedSequence' ).attr( 'id' , 'genres' ).addClass( 'col-sm-4' );
-    $( '<h1>' ).appendTo( '#genres' ).text( 'Genre' ).addClass('media-heading');
-    $( '<div>' ).appendTo( '#nestedSequence' ).attr('id','titleTopMovies').addClass( 'col-md-8' );
+    $('<div>').appendTo( '#nestedSequence' ).attr( 'id' , 'genres' ).addClass( 'col-sm-4' );
+    $('<h1>').appendTo( '#genres' ).text( 'Genre' ).addClass('media-heading');
+    $('<div>').appendTo( '#nestedSequence' ).attr('id','titleTopMovies').addClass( 'col-md-8' );
     $('<div>').appendTo('#titleTopMovies').attr( 'id' , 'resultMovieListTitle');
     $('<div>').appendTo('#titleTopMovies').attr( 'id' , 'resultMovieList');
     $( '<div>' ).appendTo( '#mainGridBodyGenre' ).attr( 'id' , 'resultMovieListDetail' ).addClass( 'col-md-7' );
@@ -127,6 +129,40 @@ export function buildCommingSoonPage() {
     renderMovies();
 }
 
+
+export function buildSeachHistoryPage() {
+    model.resetMovieList();
+
+    console.log('arrived in build search history page');
+    $.get(dbUrl + 'getSearchHistory', (data) => {
+        const searchHistory = data;
+        const $resultList = $('#result');
+
+        for (const searchItem of searchHistory) {
+            //model.addMovie(movie.movie);
+            $resultList.html('');
+            for (const movie of model.movieList) {
+                $('<li>')
+                    .appendTo($resultList)
+                    .addClass('list-group-item')
+                    .text(searchItem.query + ' ' + searchItem.count + ' ' + searchItem.date)
+                    .append(
+                        /*
+                        ('<button>')
+                            .text('details')
+                            .on('click', () => showDetails(model.getMovie(movie.id))),
+                        $('<button>')
+                            .text('favourite')
+                            .on('click', () => addToFavourite(model.getMovie(movie.id)))
+                            */
+                    );
+            }
+        }
+    });
+
+    //renderFavMovies();
+}
+
 export function buildMostPopularPage() {
 
     $('<ul>')
@@ -142,22 +178,24 @@ export function buildMostPopularPage() {
             model.addMovie(movie);
         }
     });
-
+    console.log('this is a test ', model.movieList);
     renderMovies();
 }
 
 function doSearch() {
     const query = $('#search-input').val();
     const url = 'https://api.themoviedb.org/3/search/movie?api_key=' + apiKey + '&query=' + query;
-
+    var searchQuery = query;
     model.resetMovieList();
 
     $.get(url, (data) => {
         const movies = data.results;
+        $.post(dbUrl + 'addSearchQuery', {query: searchQuery, resultCount: movies.length});
         for (const movie of movies) {
             model.addMovie(movie);
         }
     });
+
 }
 
 function renderMovies() {
@@ -171,8 +209,11 @@ function renderMovies() {
             .text(movie.title)
             .append(
                 $('<button>')
-                    .text('>')
-                    .on('click', () => showDetails(model.getMovie(movie.id)))
+                    .text('details')
+                    .on('click', () => showDetails(model.getMovie(movie.id))),
+                $('<button>')
+                    .text('favourite')
+                    .on('click', () => addToFavourite(model.getMovie(movie.id)))
             );
     }
 }

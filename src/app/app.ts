@@ -29,9 +29,40 @@ $(document).ready(() => {
     $('#nav-popular20').click(() => {
         router.doRouting('popular20');
     });
+    // Favoriten Liste TODO
+    $('#nav-favList').click(() => {
+        router.doRouting('favouriteList');
+    });
+    // Suchliste TODO
+    $('#nav-searchList').click(() => {
+        router.doRouting('searchList');
+    })
 
 
 });
+
+function callMyBackend() {
+    // Sample GET
+    fetch('http://localhost:3000/sample', {
+        method: 'get'
+    }).then((response) => {
+        console.log(response.json());
+    }).catch((err) => {
+        console.log(err);
+    });
+
+    // Sample POST
+    fetch('http://localhost:3000/sample', {
+        method: 'post',
+        body: JSON.stringify({data: ['a', 'b', 'c']})
+    }).then((response) => {
+        console.log(response.json());
+    }).catch((err) => {
+        console.log(err.json());
+    });
+}
+
+callMyBackend();
 
 /*
 $(document).ready(function () {
@@ -107,7 +138,7 @@ function renderMovies() {
     }
 }
 */
-
+/*
 function callMyBackend() {
     // Sample GET
     fetch('http://localhost:3000/sample', {
@@ -121,6 +152,7 @@ function callMyBackend() {
     // Sample POST
     fetch('http://localhost:3000/sample', {
         method: 'post',
+
         body: JSON.stringify({data: ['a', 'b', 'c']})
     }).then((response) => {
         console.log(response.json());
@@ -130,3 +162,4 @@ function callMyBackend() {
 
 }
 callMyBackend();
+*/

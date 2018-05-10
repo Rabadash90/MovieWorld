@@ -1,6 +1,7 @@
 import route from '../../node_modules/riot-route';
 
 import * as movieSearch from './movie-search/movie-search';
+import * as movieFavourite from './movie-favourite/move-favourite'
 
 export function setupRouting(){
    /* route('/fruit',function(name) {
@@ -42,6 +43,18 @@ export function setupRouting(){
         console.log('Route to most popular');
         clearContent();
         movieSearch.buildMostPopularPage();
+    });
+
+    route('/favList', () => {
+        console.log('Route to favourite List');
+        clearContent();
+        movieFavourite.buildFavouritePage();
+    });
+
+    route('/searchList', () => {
+        console.log('Route to search List');
+        clearContent();
+        movieSearch.buildSeachHistoryPage();
     });
 
     // Start watching for route changes
