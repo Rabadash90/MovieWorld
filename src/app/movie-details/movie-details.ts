@@ -1,11 +1,10 @@
-import {Movie} from "../Movie";
-
 export function showDetails(movie) {
     //('<p>')
     //    .append('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)');
-    $('#result').html('')
-    const detail = $('#content');
-    $('<h1>').appendTo(detail).addClass('MovieDetail').text(movie.title);
+    $('#resultContent').html('')
+    const detail = $('#resultContent');
+    $('#resultTitle').text(movie.title);
+    //$('<h1>').appendTo(detail).addClass('MovieDetail').text(movie.title);
 
     if(movie.posterPath != null) {
         $('<img>', {
@@ -16,6 +15,7 @@ export function showDetails(movie) {
     $('<p>').appendTo(detail).text('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)');
     $('<p>').appendTo(detail).text('Release Date: ' +  movie.releaseDate);
     $('<p>').appendTo(detail).text('Runtime: ' +  movie.runtime);
+    /*
     console.log(movie.title + movie.id);
     console.log('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)');
     console.log('ID: ' + movie.id);
@@ -27,4 +27,5 @@ export function showDetails(movie) {
     console.log('Release Date: ' +  movie.releaseDate);
     console.log('Runtime: ' +  movie.runtime);
     console.log('Stats: ' +  movie.status);
+    */
 }

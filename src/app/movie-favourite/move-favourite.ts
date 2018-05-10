@@ -4,12 +4,13 @@ import {DefaultMovieModel} from "../movie-model";
 const model = new DefaultMovieModel();
 // Register model change event
 $(model).on('modelchange', () => {
-    renderFavMovies();
+    renderFavourites();
 });
 
 export function buildFavouritePage() {
     model.resetMovieList();
 
+    $('#resultTitle').text('Favourite List');
         $.get(dbUrl + 'getFav', (data) => {
             const movies = data;
 
@@ -17,8 +18,6 @@ export function buildFavouritePage() {
                 model.addMovie(movie.movie);
             }
         });
-
-    renderFavMovies();
 }
 
 export function addToFavourite(movie) {
@@ -26,22 +25,23 @@ export function addToFavourite(movie) {
 }
 
 function deleteFromFavourite(movie) {
+    //console.log('Movie I wanna delete is ', movie);
     $.post(dbUrl + 'delFav', (movie));
 }
 
-function renderFavMovies() {
+function renderFavourites() {
 
-    const $resultFavList = $('#favResult');
+    const $resultFavList = $('#resultContent');
     $resultFavList.html('');
     for (const movie of model.movieList) {
-        console.log('movie ', movie);
+        //console.log('movie ', movie);
         $('<li>')
             .appendTo($resultFavList)
             .addClass('list-group-item')
             .text(movie.title)
             .append(
                 $('<button>')
-                    .text('remove')
+                    .text('remove ')
                     .on('click', () => deleteFromFavourite(model.getMovie(movie.id)))
             );
     }

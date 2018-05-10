@@ -1,13 +1,15 @@
 import route from '../../node_modules/riot-route';
 
+import * as movieComingSoon from './movie-coming-soon/movie-coming-soon'
+import * as moviePopular from './movie-popular/movie-popular';
+import * as movieSearchHistory from './movie-search/movie-search-history';
+import * as movieTopRated from './movie-top-rated/movie-top-rated';
+import * as movieTopRatedGenre from './movie-top-rated/movie-top-rated-genre';
 import * as movieSearch from './movie-search/movie-search';
 import * as movieFavourite from './movie-favourite/move-favourite'
 
 export function setupRouting(){
-   /* route('/fruit',function(name) {
-        console.log('The list of fruits')
-    });
-    */
+
     // Define the routes
     route('/home', () => {
         console.log('Route to home');
@@ -24,25 +26,25 @@ export function setupRouting(){
     route('/topVoted20', () => {
         console.log('Route to 20 best voted overall');
         clearContent();
-        movieSearch.buildTopVotedPage();
+        movieTopRated.buildTopVotedPage();
     });
 
     route('/topV20Category', () => {
-        console.log('Route to 20 best voted in category');
+        console.log('Route to 20 best voted by genre');
         clearContent();
-        movieSearch.buildTopVotedCatPage();
+        movieTopRatedGenre.buildTopVotedCatPage();
     });
 
     route('/soonReleased', () => {
         console.log('Route to soon released');
         clearContent();
-        movieSearch.buildCommingSoonPage();
+        movieComingSoon.buildComingSoonPage();
     });
 
     route('/popular20', () => {
         console.log('Route to most popular');
         clearContent();
-        movieSearch.buildMostPopularPage();
+        moviePopular.buildMostPopularPage();
     });
 
     route('/favList', () => {
@@ -54,7 +56,7 @@ export function setupRouting(){
     route('/searchList', () => {
         console.log('Route to search List');
         clearContent();
-        movieSearch.buildSeachHistoryPage();
+        movieSearchHistory.buildSearchHistoryPage();
     });
 
     // Start watching for route changes
@@ -67,6 +69,10 @@ export function doRouting(url) {
 
 function clearContent() {
     $('#content').html('');
+    $('<div>').appendTo($('#content')).prop('id','resultArea').append(
+        $('<h1>').prop('id','resultTitle'),
+        $('<ul>').prop('id','resultContent').addClass('list-group')
+    );
 }
 
 function startRouting() {
