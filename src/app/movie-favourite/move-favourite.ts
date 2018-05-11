@@ -1,5 +1,6 @@
 import {dbUrl} from '../constants';
 import {DefaultMovieModel} from "../movie-model";
+import {showDetails} from "../movie-details/movie-details";
 
 const model = new DefaultMovieModel();
 // Register model change event
@@ -26,23 +27,61 @@ export function addToFavourite(movie) {
 
 function deleteFromFavourite(movie) {
     //console.log('Movie I wanna delete is ', movie);
-    $.post(dbUrl + 'delFav', (movie));
+    $.post(dbUrl + 'delFav', (movie), (response)=> {
+        if(response == 'success') {
+            console.log('if', response);
+            renderFavourites();
+        }
+    });
 }
 
 function renderFavourites() {
 
     const $resultFavList = $('#resultContent');
-    $resultFavList.html('');
+    $resultFavList.empty().addClass('result-content');
+    $('<table>')
+        .addClass('table')
+        .addClass('table-striped')
+        .addClass('table-hover')
+        .addClass('table-condensed')
+        .prop('id', 'favouriteMoviesTHeader')
+        .appendTo($resultFavList)
+        .append(
+            $('<thead>').append(
+                $('<tr>').append(
+                    $('<th>').text('Title')
+                        .width('80%'),
+                    $('<th>').text('Show Details')
+                        .width('15%'),
+                    $('<th>').text('Remove')
+                        .width('15%')
+                )
+            ),
+            $('<tbody>')
+                .attr('id', 'favouriteMoviesTBody')
+        );
     for (const movie of model.movieList) {
         //console.log('movie ', movie);
-        $('<li>')
-            .appendTo($resultFavList)
-            .addClass('list-group-item')
-            .text(movie.title)
+        $('<tr>')
+            .appendTo($('#favouriteMoviesTBody'))
             .append(
-                $('<button>')
-                    .text('remove ')
-                    .on('click', () => deleteFromFavourite(model.getMovie(movie.id)))
+                $('<td>').text(movie.title),
+                $('<td>')
+                    .append(
+                        $('<a>')
+                        //.text('details')
+                            .addClass('btn btn-default')
+                            .addClass('glyphicon glyphicon-menu-hamburger')
+                            .on('click', () => showDetails(model.getMovie(movie.id)))
+                    ),
+                $('<td>')
+                    .append(
+                        $('<a>')
+                        //.text('details')
+                            .addClass('btn btn-danger')
+                            .addClass('glyphicon glyphicon-remove')
+                            .on('click', () => deleteFromFavourite(model.getMovie(movie.id)))
+                    )
             );
     }
 }

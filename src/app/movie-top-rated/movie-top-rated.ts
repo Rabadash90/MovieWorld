@@ -8,9 +8,6 @@ $(model).on('modelchange', () => {
 });
 export function buildTopVotedPage() {
 
-    $('<ul>')
-        .appendTo('#content')
-        .attr('id', 'result');
 
     $('#resultTitle').text('Top Rated');
 

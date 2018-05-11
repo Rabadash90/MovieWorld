@@ -1,31 +1,23 @@
 export function showDetails(movie) {
     //('<p>')
     //    .append('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)');
-    $('#resultContent').html('')
+    $('#resultContent').empty().addClass('result-content');
     const detail = $('#resultContent');
     $('#resultTitle').text(movie.title);
     //$('<h1>').appendTo(detail).addClass('MovieDetail').text(movie.title);
-
-    if(movie.posterPath != null) {
-        $('<img>', {
-            src: 'https://image.tmdb.org/t/p/w200' + movie.posterPath ,
-            width: '20%'}).appendTo(detail);
-    }
-    $('<p>').appendTo(detail).text(movie.overview);
-    $('<p>').appendTo(detail).text('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)');
-    $('<p>').appendTo(detail).text('Release Date: ' +  movie.releaseDate);
-    $('<p>').appendTo(detail).text('Runtime: ' +  movie.runtime);
-    /*
-    console.log(movie.title + movie.id);
-    console.log('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)');
-    console.log('ID: ' + movie.id);
-    console.log('Title: ' +  movie.title);
-    console.log('Overview: ' +  movie.overview);
-    console.log('Rating: ' +  movie.rating);
-    console.log('Votes: ' +  movie.votes);
-    console.log('PosterPath: ' +  movie.posterPath);
-    console.log('Release Date: ' +  movie.releaseDate);
-    console.log('Runtime: ' +  movie.runtime);
-    console.log('Stats: ' +  movie.status);
-    */
+    $('<div>').addClass('row').appendTo(detail).append(
+        $('<div>').addClass('col-sm-2').append(
+            $('<img>', {
+                src: 'https://image.tmdb.org/t/p/w200' + movie.posterPath
+                })
+        ),
+        $('<div>').addClass('col-sm-1'),
+        $('<div>').addClass('col-sm-5').append(
+            $('<h4>').text('Description'),
+            $('<p>').text(movie.overview),
+            $('<p>').text('Rating: ' + movie.rating + ' / 10 (' + movie.votes + ' votes)'),
+            $('<p>').text('Release Date: ' +  movie.releaseDate),
+            $('<p>').text('Runtime: ' +  movie.runtime)
+        )
+    );
 }

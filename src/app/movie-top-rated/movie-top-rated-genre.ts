@@ -4,12 +4,12 @@ export function buildTopVotedCatPage() {
     $( '#content' ).empty();
     console.log('reached genre build page')
     $('<div>').appendTo($('#content')).addClass('row').append(
-        $('<div>').addClass('col-sm-3').prop('id', 'navGenreContainer').append(
+        $('<div>').addClass('col-sm-3').addClass('genre-container').prop('id', 'navGenreContainer').append(
             $('<ul>').addClass('nav').addClass('nav-pills').addClass('nav-stacked').prop('id','navGenre')
         ),
-        $('<div>').addClass('col-sm-9').prop('id','resultArea').append(
-            $('<h1>').prop('id','resultTitle'),
-            $('<ul>').prop('id','resultContent')
+        $('<div>').addClass('col-sm-9').prop('id','resultArea').addClass('result-area').append(
+            $('<h1>').prop('id','resultTitle').addClass('result-title'),
+            $('<div>').prop('id','resultContent').addClass('result-content')
         )
     );
 

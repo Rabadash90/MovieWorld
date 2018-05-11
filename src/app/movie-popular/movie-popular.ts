@@ -2,10 +2,6 @@ import {apiKey, model} from "../constants";
 
 export function buildMostPopularPage() {
 
-    $('<ul>')
-        .appendTo('#resultArea')
-        .attr('id', 'resultContent');
-
     const url = 'https://api.themoviedb.org/3/movie/popular?api_key=' + apiKey + '&language=en-US';
 
     $('#resultTitle').text('Most Popular');

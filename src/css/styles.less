@@ -1,6 +1,8 @@
 //#ffffe0;
 @import url('../../node_modules/bootstrap/dist/css/bootstrap.min.css');
-@base-color: #ffffe0;
+@base-color: lightgray;
+@nav-color: black;
+@content-color: azure;
 
 .footer {
   position: fixed;
@@ -9,6 +11,13 @@
   background-color: @base-color;
   width: 100%;
   border-top: 1px solid darkorange;
+  height: 100px; // Height of the footer
+}
+body {
+  background-color: @content-color;
+}
+#content {
+  padding-bottom: 100px; // Height of the footer
 }
 
 .tmdb-logo {
@@ -32,3 +41,14 @@
   width: 80%;
   display: inline-block;
 }
+
+.genre-container {}
+.result-content {}
+
+.result-area {
+  background-color: @content-color;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.result-title {}
+

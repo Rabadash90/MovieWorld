@@ -4,24 +4,44 @@ import {addToFavourite} from "../movie-favourite/move-favourite";
 
 export function renderMovies() {
 
-    const $resultList = $('#resultContent');
-    $resultList.html('');
+    const $resultContent = $('#resultContent');
+    $resultContent.empty().addClass('resultContent');
+    $('<table>')
+        .addClass('table')
+        .addClass('table-striped')
+        .addClass('table-hover')
+        .addClass('table-condensed')
+        .prop('id', 'renderMoviesTHeader')
+        .appendTo($('#resultContent'))
+        .append(
+            $('<thead>').append(
+                $('<tr>').append(
+                    $('<th>').text('Title')
+                        .width('70%'),
+                    $('<th>').text('Show Details')
+                        .width('15%'),
+                    $('<th>').text('Add to Favourites')
+                        .width('15%')
+                )
+            ),
+            $('<tbody>')
+                .attr('id', 'renderMoviesTBody')
+        );
     for (const movie of model.movieList) {
-        $('<p>')
-            .appendTo($resultList)
-            //.addClass('list-group-item')
-            .text(movie.title)
-            .append($('<span>')
-                .addClass('badge')
-                .text('tes ')
-                .append(
-                    $('<button>')
-                    //.text('details')
-                        .addClass('btn btn-default')
-                        .addClass('glyphicon glyphicon-menu-hamburger')
-                        .attr('data-toggle','modal')
-                        .attr('data-target','#myModal')
-                        .on('click', () => showDetails(model.getMovie(movie.id))),
+        console.log('found results')
+        $('<tr>')
+            .appendTo($('#renderMoviesTBody'))
+            .append(
+                $('<td>').text(movie.title),
+                $('<td>')
+                    .append(
+                        $('<a>')
+                        //.text('details')
+                            .addClass('btn btn-default')
+                            .addClass('glyphicon glyphicon-menu-hamburger')
+                            .on('click', () => showDetails(model.getMovie(movie.id)))
+                    ),
+                $('<td>').append(
                     $('<button>')
                     //.text('favourite')
                         .addClass('btn btn-danger')

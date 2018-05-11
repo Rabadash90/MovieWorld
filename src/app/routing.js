@@ -69,9 +69,9 @@ export function doRouting(url) {
 
 function clearContent() {
     $('#content').html('');
-    $('<div>').appendTo($('#content')).prop('id','resultArea').append(
-        $('<h1>').prop('id','resultTitle'),
-        $('<ul>').prop('id','resultContent').addClass('list-group')
+    $('<div>').appendTo($('#content')).addClass('result-area').prop('id','resultArea').append(
+        $('<h1>').prop('id','resultTitle').addClass('result-title'),
+        $('<ul>').prop('id','resultContent').addClass('list-group').addClass('result-content')
     );
 }
 
