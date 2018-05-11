@@ -1,7 +1,4 @@
 import {apiKey, dbUrl, model} from '../constants';
-import {showDetails} from '../movie-details/movie-details';
-import {addToFavourite} from '../movie-favourite/move-favourite';
-import {DefaultMovieModel} from '../movie-model';
 import {renderMovies} from "../result-content/result-content";
 
 

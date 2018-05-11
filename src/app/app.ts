@@ -2,7 +2,6 @@ import 'bootstrap';
 import '../css/styles.less';
 import 'less';
 import * as router from './routing';
-//import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 // jQuery verwendet um einen event zu registrieren (sobald die seite / document geladen / ready ist)
 $(document).ready(() => {
@@ -38,7 +37,7 @@ $(document).ready(() => {
 
 
 });
-
+/*
 function callMyBackend() {
     // Sample GET
     fetch('http://localhost:3000/sample', {
@@ -61,3 +60,4 @@ function callMyBackend() {
 }
 
 callMyBackend();
+*/

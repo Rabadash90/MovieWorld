@@ -30,7 +30,7 @@ function deleteFromFavourite(movie) {
     $.post(dbUrl + 'delFav', (movie), (response)=> {
         if(response == 'success') {
             console.log('if', response);
-            renderFavourites();
+            buildFavouritePage();
         }
     });
 }
@@ -50,7 +50,7 @@ function renderFavourites() {
             $('<thead>').append(
                 $('<tr>').append(
                     $('<th>').text('Title')
-                        .width('80%'),
+                        .width('70%'),
                     $('<th>').text('Show Details')
                         .width('15%'),
                     $('<th>').text('Remove')

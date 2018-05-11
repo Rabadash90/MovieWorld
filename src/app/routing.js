@@ -7,6 +7,7 @@ import * as movieTopRated from './movie-top-rated/movie-top-rated';
 import * as movieTopRatedGenre from './movie-top-rated/movie-top-rated-genre';
 import * as movieSearch from './movie-search/movie-search';
 import * as movieFavourite from './movie-favourite/move-favourite'
+import {buildHomePage} from "./home";
 
 export function setupRouting(){
 
@@ -14,7 +15,8 @@ export function setupRouting(){
     route('/home', () => {
         console.log('Route to home');
         clearContent();
-        $('#content').html('Welcome to the home page By Routing');
+        //$('#content').html('Welcome to the home page By Routing');
+        buildHomePage();
     });
 
     route('/search', () => {

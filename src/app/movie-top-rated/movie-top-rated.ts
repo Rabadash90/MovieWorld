@@ -1,5 +1,4 @@
 import {apiKey, model} from "../constants";
-import {DefaultMovieModel} from '../movie-model';
 import {renderMovies} from "../result-content/result-content";
 
 // Register model change event

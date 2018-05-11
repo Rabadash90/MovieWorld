@@ -16,7 +16,7 @@ export function buildSearchHistoryPage() {
             .addClass('table-hover')
             .addClass('table-condensed')
             .prop('id', 'searchHistoryTable')
-            .appendTo($('#resultContent'))
+            .appendTo($resultList)
             .append(
                 $('<thead>').append(
                     $('<tr>').append(
