@@ -50,6 +50,7 @@ export function buildSearchHistoryPage() {
         }
     });
 }
+
 function filterResults() {
 
     var input, filter, table, tr, td, i;
@@ -70,6 +71,7 @@ function filterResults() {
         }
     }
 }
+
 function filterDate() {
 
     var input, filter, table, tr, td, i;
@@ -90,6 +92,7 @@ function filterDate() {
         }
     }
 }
+
 function filterSearchQuery() {
 
     var input, filter, table, tr, td, i;

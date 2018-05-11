@@ -1,5 +1,7 @@
 # MovieWorld
 
+Von Alexandra Hauri
+
 MovieWorld (https://github.com/Rabadash90/MovieWorld) benötigt das [BackEnd](https://github.com/Rabadash90/MovieBE)
 
 ## Navigation
@@ -10,6 +12,17 @@ MovieWorld (https://github.com/Rabadash90/MovieWorld) benötigt das [BackEnd](ht
 * 20 populärsten Filme anzeigen
 * Favoritenliste anzeigen
 * Liste von Suchabfragen anzeigen
+
+## Special
+Die Anzeige der Filme wurde jeweils mit einer Tabelle realisiert und nicht mit einer Liste. Bootstrap bietet da auch Klassen um diese gut anzuzeigen.
+### TODO's
+#### Detail
+Was noch verbessert werden sollte ist die Detail Ansicht. Hier könnte ein Button hinzugefügt werden, damit dieser ebenfalls in der Detailansicht der Favoritenliste angefügt werden kann.
+
+Ebenfalls war die Idee die Detailansicht ain einem Modal anzuzeigen. Anstatt den Content neu zu laden. Das Modal würde einiges besser aussehen.
+
+#### Filter
+Momentan gibt es für jeden Filter eine eigene Funktion, diese sollte in einem nächsten Schritt zusammengeführt werden.
 
 ## Layout
 ### [LESS](http://www.lesscss.de/)
@@ -39,6 +52,8 @@ Vermutet wird das etwas mit den Versionen nicht stimmt. Sicher bin ich jedoch ni
 In der Search History, kann über die Liste der letzten Suchabfrage gefiltert werden.
 Es gibt jeweils einen Filter für die SearchQueries, einen für die Anzahl Resultate und einen für die Datumssuche.
 
+## TSLint
+Analysiert den Code, es gibt in script analyze um die TSLint Analyse laufen zu lassen. Dieser gibt Fehler bei den Quotes. Diese sind zwar auf Single eingestellt aber werden wohl nicht greiffen.
 
 # [BackEnd](https://github.com/Rabadash90/MovieBE)
 ## Datenbank

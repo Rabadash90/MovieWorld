@@ -12,5 +12,4 @@ export function buildMostPopularPage() {
             model.addMovie(movie);
         }
     });
-    console.log('this is a test ', model.movieList);
 }

@@ -5,6 +5,7 @@ import {renderMovies} from "../result-content/result-content";
 $(model).on('modelchange', () => {
     renderMovies();
 });
+
 export function buildTopVotedPage() {
 
 

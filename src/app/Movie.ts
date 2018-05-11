@@ -1,5 +1,3 @@
-
-
 export class Movie {
     public id: string;
     public title: string;
